@@ -7,10 +7,12 @@ private:
 public:
     Grid(int width = 10, int hight = 10) {
         this->width = width;
-        this->width = height;
+        this->height = height;
     }
 
+    bool isValidPosition(int row, int col) {
+        if (row < 0 || row >= height || col < 0 || col >= width) return false;
 
-
-
+        return true;
+    }
 };

@@ -1,13 +1,17 @@
+#include <iostream>
+
+#include "include/Food.h"
+#include "include/Grid.h"
+#include "include/Snake.h"
+#include "include/Renderer.h"
+
 class Game {
 private:
-    void processInput();
-    void update();
-    void render();
+    Grid grid = Grid(10, 10);
+    Food food = Food();
 
-    void handleCollisions();
-    void reset();
+
 public:
-    Game();
-    ~Game();
+    
 
 };
