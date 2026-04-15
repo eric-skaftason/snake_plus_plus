@@ -1,7 +1,6 @@
 #include <vector>
 
 #include "include/utils/Coordinate.h"
-
 #include "include/Snake.h"
 
 
@@ -9,22 +8,35 @@ class Snake {
 private:
     std::vector<Coordinate> positions;
 
+    void removePosition(int index) {
+        positions.erase(positions.begin() + index);
+    }
+
 public:
-    Snake();
 
-    void move();
-
-    void grow();
-
-    void setDirection();
-
-    bool checkSelfCollision();
-
-    // accessor methods
-    std::vector<Coordinate> getPositions() {
+    void move() {
 
     }
 
-    void reset();
+    void grow() {
+
+    }
+
+    void setDirection() {
+
+    }
+
+    bool checkSelfCollision() {
+
+    }
+
+    // accessor methods
+    const std::vector<Coordinate> &getPositions() const {
+        return positions;
+    }
+
+    void reset() {
+
+    }
 
 };
