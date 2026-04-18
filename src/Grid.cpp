@@ -1,18 +1,11 @@
-class Grid {
+#include "Grid.h"
 
-private:
-    int width;
-    int height;
+Grid::Grid(int width, int height) {
+    this->width = width;
+    this->height = height;
+}
 
-public:
-    Grid(int width = 10, int hight = 10) {
-        this->width = width;
-        this->height = height;
-    }
-
-    bool isValidPosition(int row, int col) {
-        if (row < 0 || row >= height || col < 0 || col >= width) return false;
-
-        return true;
-    }
-};
+bool Grid::isValidPosition(int row, int col) {
+    if (row < 0 || row >= height || col < 0 || col >= width) return false;
+    return true;
+}

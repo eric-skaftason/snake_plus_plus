@@ -1,9 +1,9 @@
 #pragma once
 
-#include "include/Food.h"
-#include "include/Grid.h"
-#include "include/Snake.h"
-#include "include/Renderer.h"
+#include "Food.h"
+#include "Grid.h"
+#include "Snake.h"
+#include "Renderer.h"
 
 class Game {
 private:

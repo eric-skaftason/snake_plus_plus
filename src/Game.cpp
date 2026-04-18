@@ -1,29 +1,21 @@
 #include <iostream>
 
-#include "include/Food.h"
-#include "include/Grid.h"
-#include "include/Snake.h"
-#include "include/Renderer.h"
+#include "Food.h"
+#include "Grid.h"
+#include "Snake.h"
+#include "Renderer.h"
 
-class Game {
-private:
-    Grid grid = Grid(10, 10);
-    Food food = Food();
-    Snake snake = Snake();
+#include "Game.h"
 
-    void getInput() {
+void Game::getInput() {
 
-    }
-
-public:
+}
     
-    void start() {
+void Game::start() {
 
-    }
+}
 
-    void debug() {
-        std::cout << "Debug\n";
-        
-        
-    }
-};
+void Game::debug() {
+    std::cout << "Debug\n";
+    
+}

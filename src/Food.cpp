@@ -1,43 +1,36 @@
 #include <vector>
 
-#include "include/utils/Coordinate.h"
+#include "utils/Coordinate.h"
+#include "Food.h"
 
-class Food {
-private:
-    std::vector<Coordinate> positions;
+int Food::getIndexByCoords(int row, int col) {
+    int index = -1;
 
-    int getIndexByCoords(int row, int col) {
-        int index = -1;
-
-        for (short i = 0; i < positions.size(); i++) {
-            if (
-                row == positions[i].row &&
-                col == positions[i].col
-            ) {
-                index = i;
-                break;
-            }
+    for (unsigned long i = 0; i < positions.size(); i++) {
+        if (
+            row == positions[i].row &&
+            col == positions[i].col
+        ) {
+            index = i;
+            break;
         }
-
-        return index;
     }
 
-public:
+    return index;
+}
 
-    void removeFood(int row, int col) {
-        int index = getIndexByCoords(row, col);
+void Food::removeFood(int row, int col) {
+    int index = getIndexByCoords(row, col);
 
-        if (index == -1) return;
+    if (index == -1) return;
 
-        positions.erase(positions.begin() + index);
-    }
+    positions.erase(positions.begin() + index);
+}
 
-    void addFood(int row, int col) {
-        positions.push_back(Coordinate(row, col));
-    }
+void Food::addFood(int row, int col) {
+    positions.push_back(Coordinate(row, col));
+}
 
-    const std::vector<Coordinate>& getPositions() const {
-        return positions;
-    }
-
-};
+const std::vector<Coordinate>& Food::getPositions() const {
+    return positions;
+}

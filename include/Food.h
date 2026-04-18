@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include "include/utils/Coordinate.h"
+#include "utils/Coordinate.h"
 
 class Food {
 private:

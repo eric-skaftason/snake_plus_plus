@@ -2,7 +2,7 @@
 CXX = g++
 
 # Flags
-CXXFLAGS = -std=c++17 -Wall -I.
+CXXFLAGS = -std=c++17 -Wall -Iinclude
 
 # Source files
 SRC = $(wildcard src/*.cpp)

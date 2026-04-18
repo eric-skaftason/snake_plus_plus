@@ -1,42 +1,13 @@
 #include <vector>
 
-#include "include/utils/Coordinate.h"
-#include "include/Snake.h"
+#include "utils/Coordinate.h"
+#include "Snake.h"
 
 
-class Snake {
-private:
-    std::vector<Coordinate> positions;
+const std::vector<Coordinate>& Snake::getPositions() const {
+    return this->positions;
+}
 
-    void removePosition(int index) {
-        positions.erase(positions.begin() + index);
-    }
-
-public:
-
-    void move() {
-
-    }
-
-    void grow() {
-
-    }
-
-    void setDirection() {
-
-    }
-
-    bool checkSelfCollision() {
-
-    }
-
-    // accessor methods
-    const std::vector<Coordinate> &getPositions() const {
-        return positions;
-    }
-
-    void reset() {
-
-    }
-
-};
+void Snake::removePosition(int index) {
+    this->positions.erase(positions.begin() + index);
+}
