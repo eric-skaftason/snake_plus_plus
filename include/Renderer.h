@@ -7,6 +7,7 @@
 class Renderer {
 private:
     // set the renderwindow as a pointer to give control over when to delete it
+    // helps for when aking a resizable window
     sf::RenderWindow* window;
     sf::Event event;
 
@@ -19,6 +20,7 @@ public:
     ~Renderer();
 
     void render();
+    void pollEvents();
 
     const bool getWindowIsOpen() const;
 

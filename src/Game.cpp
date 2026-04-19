@@ -17,10 +17,13 @@ Game::Game() {
 void Game::run() {
     while (this->renderer.getWindowIsOpen()) {
         // Process events
+        this->renderer.pollEvents();
 
         // Update
+        this->update();
 
         // Render
+        this->renderer.render();
     }
 }
 

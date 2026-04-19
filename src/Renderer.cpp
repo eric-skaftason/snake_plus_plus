@@ -28,6 +28,26 @@ const bool Renderer::getWindowIsOpen() const {
 
 // Public methods
 void Renderer::render() {
+    /*
+        - clear old frame
+        - render objects
+        - display frame in window
+    */
 
+    this->window->clear(sf::Color(0, 0, 0, 255));
+
+    this->window->display();
 }
 
+void Renderer::pollEvents() {
+    while (this->window->pollEvent(this->event)) {
+        switch (this->event.type) {
+            case sf::Event::Closed:
+                this->window->close();
+                break;
+            case sf::Event::KeyPressed:
+                if (this->event.key.code == sf::Keyboard::Escape) this->window->close();
+                break;
+        }
+    }
+}
