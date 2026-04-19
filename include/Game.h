@@ -16,6 +16,8 @@ private:
 
 public:
     Game();
+
+    void run();
     
     void update();
     void render();

@@ -18,7 +18,16 @@ Renderer::~Renderer() {
     delete this->window; // deallocate memory
 }
 
+// Accessors
+const bool Renderer::getWindowIsOpen() const {
+    return this->window->isOpen();
+
+    // Equivalent to this:
+    // *((*this).window).isOpen();
+}
+
 // Public methods
 void Renderer::render() {
 
 }
+

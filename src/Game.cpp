@@ -14,6 +14,16 @@ Game::Game() {
 
 
 // Public methods
+void Game::run() {
+    while (this->renderer.getWindowIsOpen()) {
+        // Process events
+
+        // Update
+
+        // Render
+    }
+}
+
 void Game::update() {
 
 }
