@@ -10,13 +10,14 @@ private:
     Grid grid;
     Food food;
     Snake snake;
+    Renderer renderer = Renderer(640, 480);
 
-    void getInput();
+    // void getInput();
 
 public:
+    Game();
     
-    void start();
-
-    void debug();    
+    void update();
+    void render();
     
 };

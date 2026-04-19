@@ -7,15 +7,17 @@
 
 #include "Game.h"
 
-void Game::getInput() {
-
-}
+// Constructor
+Game::Game() {
     
-void Game::start() {
+}
+
+
+// Public methods
+void Game::update() {
 
 }
 
-void Game::debug() {
-    std::cout << "Debug\n";
+void Game::render() {
     
 }
