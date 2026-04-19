@@ -1,5 +1,7 @@
 #include <iostream>
 
+#include "utils/Coordinate.h"
+
 #include "Food.h"
 #include "Grid.h"
 #include "Snake.h"
@@ -28,9 +30,8 @@ void Game::run() {
 }
 
 void Game::update() {
+    const std::vector<Coordinate> snake_positions = snake.getPositions();
 
-}
-
-void Game::render() {
+    snake.move();
     
 }

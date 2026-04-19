@@ -3,7 +3,7 @@
 #include "utils/Coordinate.h"
 #include "Food.h"
 
-int Food::getIndexByCoords(int row, int col) {
+int Food::getIndexByRowCol(int row, int col) {
     int index = -1;
 
     for (unsigned long i = 0; i < positions.size(); i++) {
@@ -20,7 +20,7 @@ int Food::getIndexByCoords(int row, int col) {
 }
 
 void Food::removeFood(int row, int col) {
-    int index = getIndexByCoords(row, col);
+    int index = getIndexByRowCol(row, col);
 
     if (index == -1) return;
 

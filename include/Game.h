@@ -12,14 +12,10 @@ private:
     Snake snake;
     Renderer renderer = Renderer(640, 480);
 
-    // void getInput();
-
 public:
     Game();
 
     void run();
     
-    void update();
-    void render();
-    
+    void update();    
 };

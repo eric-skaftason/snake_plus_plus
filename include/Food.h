@@ -7,7 +7,7 @@ class Food {
 private:
     std::vector<Coordinate> positions;
 
-    int getIndexByCoords(int row, int col);
+    int getIndexByRowCol(int row, int col);
 
 public:
 

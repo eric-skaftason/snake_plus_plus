@@ -3,6 +3,8 @@
 // Private methods
 void Renderer::initWindow() {
     this->window = new sf::RenderWindow(this->videoMode, "Snake++", sf::Style::Default);
+
+    this->window->setFramerateLimit(30);
 }
 
 // Constructor / Destructor
@@ -34,8 +36,14 @@ void Renderer::render() {
         - display frame in window
     */
 
+    // Clear old frame
     this->window->clear(sf::Color(0, 0, 0, 255));
 
+    // Render new frame
+
+
+
+    // Display frame
     this->window->display();
 }
 
