@@ -62,7 +62,9 @@ void Renderer::render(const Snake& snake, const Food& food) {
     // Render new frame
     for (int r = 0; r < this->rows; r++) {
         for (int c = 0; c < this->cols; c++) {
-            renderTile(r, c, sf::Color::Blue);
+            if (snake.isSnakeAt(r, c)) renderTile(r, c, this->snake_colour);
+            else if (food.isFoodAt(r, c)) renderTile(r, c, this->food_colour);
+            // otherwise don't render anything
         }
     }
 

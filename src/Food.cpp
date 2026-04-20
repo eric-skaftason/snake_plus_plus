@@ -19,6 +19,15 @@ int Food::getIndexByRowCol(int row, int col) {
     return index;
 }
 
+const bool Food::isFoodAt(int row, int col) const {
+    for (int i = 0; i < this->positions.size(); i++) {
+        Coordinate pos = this->positions[i];
+
+        if (pos.row == row && pos.col == col) return true;
+    }
+    return false;
+}
+
 void Food::removeFood(int row, int col) {
     int index = getIndexByRowCol(row, col);
 

@@ -11,6 +11,8 @@ private:
 
 public:
 
+    const bool isFoodAt(int row, int col) const;
+
     void removeFood(int row, int col);
 
     void addFood(int row, int col);

@@ -28,6 +28,8 @@ public:
 
     // accessor methods
     const std::vector<Coordinate> &getPositions() const;
+    
+    const bool isSnakeAt(int row, int col) const;
 
     void reset();
 

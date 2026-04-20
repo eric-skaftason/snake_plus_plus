@@ -24,6 +24,15 @@ const Coordinate& Snake::getHeadPosition() const {
     return this->positions[0];
 }
 
+const bool Snake::isSnakeAt(int row, int col) const {
+    for (int i = 0; i < this->positions.size(); i++) {
+        Coordinate pos = this->positions[i];
+
+        if (pos.row == row && pos.col == col) return true;
+    }
+    return false;
+}
+
 void Snake::setHead(Coordinate head) {
     this->positions.insert(this->positions.begin(), head);
 }
