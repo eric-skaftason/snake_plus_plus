@@ -6,25 +6,27 @@ private:
 
     // 0-up, 1-right, 2-down, 3-left
     int direction;
+    int rows, cols;
 
     void eraseTail();
 
     const Coordinate& getHeadPosition() const;
 
-    void setHead(Coordinate head);
+    void insertNewHead(Coordinate head);
 
     void removePosition(int index);
 
 public:
-    Snake();
+    Snake(int rows, int cols);
 
-    void move();
+    bool willCollideWithSelf(Coordinate head);
+    bool willBeOutOfBounds(Coordinate head);
+
+    bool move();
 
     void grow();
 
     void setDirection();
-
-    bool checkSelfCollision();
 
     // accessor methods
     const std::vector<Coordinate> &getPositions() const;

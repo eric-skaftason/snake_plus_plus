@@ -13,12 +13,21 @@
 
 // Constructor
 Game::Game() {
+    this->playing = true;
+}
+
+// Private methods
+void Game::update() {
+    const std::vector<Coordinate> snake_positions = snake.getPositions();
+
+    this->playing = this->snake.move();
     
 }
 
-
 // Public methods
 void Game::run() {
+    this->playing = true;
+
     using Clock = std::chrono::steady_clock;
     auto previousTime = Clock::now();
 
@@ -36,18 +45,11 @@ void Game::run() {
         this->update();
 
         // Render
-        this->renderer.render(this->snake, this->food);
+        this->renderer.render(this->playing, this->snake, this->food);
 
         // Delay
         if (ms < this->updateDelay) {
             std::this_thread::sleep_for(std::chrono::milliseconds(this->updateDelay - ms));
         }
     }
-}
-
-void Game::update() {
-    const std::vector<Coordinate> snake_positions = snake.getPositions();
-
-    snake.move();
-    
 }

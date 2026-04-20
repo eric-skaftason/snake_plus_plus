@@ -49,12 +49,13 @@ const bool Renderer::getWindowIsOpen() const {
 }
 
 // Public methods
-void Renderer::render(const Snake& snake, const Food& food) {
-    /*
-        - clear old frame
-        - render objects
-        - display frame in window
-    */
+void Renderer::render(bool playing, const Snake& snake, const Food& food) {
+    // Check game state
+    if (!playing) {
+        this->window->clear(sf::Color(64, 64, 64, 255));
+        this->window->display();
+        return;
+    }
 
     // Clear old frame
     this->window->clear(sf::Color(0, 0, 0, 255));

@@ -33,7 +33,7 @@ public:
     Renderer(int rows, int cols);
     ~Renderer();
 
-    void render(const Snake& snake, const Food& food);
+    void render(bool playing, const Snake& snake, const Food& food);
     void pollEvents();
 
     const bool getWindowIsOpen() const;
