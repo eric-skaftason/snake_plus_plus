@@ -10,7 +10,11 @@ private:
     Grid grid;
     Food food;
     Snake snake;
-    Renderer renderer = Renderer(640, 480);
+
+    int rows = 10;
+    int cols = 10;
+
+    Renderer renderer = Renderer(rows, cols);
 
 public:
     Game();

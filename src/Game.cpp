@@ -25,7 +25,7 @@ void Game::run() {
         this->update();
 
         // Render
-        this->renderer.render();
+        this->renderer.render(this->snake, this->food);
     }
 }
 

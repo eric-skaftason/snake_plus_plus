@@ -1,5 +1,9 @@
 #include "Renderer.h"
 
+// Can be included here (in the .cpp and not the .h) because Food and Snake are only ever references
+#include "Food.h"
+#include "Snake.h"
+
 // Private methods
 void Renderer::initWindow() {
     this->window = new sf::RenderWindow(this->videoMode, "Snake++", sf::Style::Default);
@@ -7,11 +11,27 @@ void Renderer::initWindow() {
     this->window->setFramerateLimit(30);
 }
 
-// Constructor / Destructor
-Renderer::Renderer(int width, int height) {
-    this->videoMode.width = width;
-    this->videoMode.height = height;
+void Renderer::renderTile(int row, int col, sf::Color color) {
+    const int x = this->cell_width * col;
+    const int y = this->cell_height * row;
+    sf::RectangleShape tile(sf::Vector2f(this->cell_width, this->cell_height));
 
+    tile.setPosition(x, y);
+    tile.setFillColor(color);
+
+    this->window->draw(tile);
+}
+
+// Constructor / Destructor
+Renderer::Renderer(int rows, int cols) {
+    this->videoMode.width = this->width;
+    this->videoMode.height = this->height;
+
+    this->cell_width = this->width / cols;
+    this->cell_height = this->height / rows;
+
+    this->rows = rows;
+    this->cols = cols;
 
     initWindow();
 }
@@ -29,7 +49,7 @@ const bool Renderer::getWindowIsOpen() const {
 }
 
 // Public methods
-void Renderer::render() {
+void Renderer::render(const Snake& snake, const Food& food) {
     /*
         - clear old frame
         - render objects
@@ -40,7 +60,11 @@ void Renderer::render() {
     this->window->clear(sf::Color(0, 0, 0, 255));
 
     // Render new frame
-
+    for (int r = 0; r < this->rows; r++) {
+        for (int c = 0; c < this->cols; c++) {
+            renderTile(r, c, sf::Color::Blue);
+        }
+    }
 
 
     // Display frame

@@ -4,6 +4,9 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
+class Food;
+class Snake;
+
 class Renderer {
 private:
     // set the renderwindow as a pointer to give control over when to delete it
@@ -13,13 +16,21 @@ private:
 
     sf::VideoMode videoMode;
 
+    int width = 200;
+    int height = 200;
+
+    int cell_width, cell_height;
+    int rows, cols;
+
     void initWindow();
 
+    void renderTile(int row, int col, sf::Color color);
+
 public:
-    Renderer(int windowWidth = 640, int windowHeight = 480);
+    Renderer(int rows, int cols);
     ~Renderer();
 
-    void render();
+    void render(const Snake& snake, const Food& food);
     void pollEvents();
 
     const bool getWindowIsOpen() const;
