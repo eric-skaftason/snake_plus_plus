@@ -14,6 +14,8 @@ private:
     int rows = 10;
     int cols = 10;
 
+    int updateDelay = 500; // ms
+
     Renderer renderer = Renderer(rows, cols);
 
 public:
