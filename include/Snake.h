@@ -4,7 +4,7 @@ class Snake {
 private:
     std::vector<Coordinate> positions;
 
-    // 0-up, 1-right, 2-down, 3-left
+    // 0-up, 1-down, 2-left, 3-right
     int direction;
     int rows, cols;
 
@@ -26,7 +26,7 @@ public:
 
     void grow();
 
-    void setDirection();
+    void setDirection(int direction);
 
     // accessor methods
     const std::vector<Coordinate> &getPositions() const;

@@ -17,8 +17,10 @@ Game::Game() {
 }
 
 // Private methods
-void Game::update() {
-    const std::vector<Coordinate> snake_positions = snake.getPositions();
+void Game::update(int direction) {
+    // const std::vector<Coordinate> snake_positions = snake.getPositions();
+
+    this->snake.setDirection(direction);
 
     this->playing = this->snake.move();
     
@@ -39,10 +41,10 @@ void Game::run() {
         long long ms = deltaTime.count();
 
         // Process events
-        this->renderer.pollEvents();
+        int direction = this->renderer.pollEvents();
 
         // Update
-        this->update();
+        this->update(direction);
 
         // Render
         this->renderer.render(this->playing, this->snake, this->food);

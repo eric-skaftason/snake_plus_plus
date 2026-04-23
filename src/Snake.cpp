@@ -4,11 +4,12 @@
 #include "Snake.h"
 
 Snake::Snake(int rows, int cols) {
-    this->direction = 1;
+    this->direction = 3;
 
     this->rows = rows;
     this->cols = cols;
 
+    this->positions.push_back(Coordinate(2, 5));
     this->positions.push_back(Coordinate(2, 4));
     this->positions.push_back(Coordinate(2, 3));
     this->positions.push_back(Coordinate(2, 2));
@@ -61,6 +62,11 @@ bool Snake::willBeOutOfBounds(Coordinate head) {
     return false;
 }
 
+void Snake::setDirection(int direction) {
+    if (direction < 0) return;
+    this->direction = direction;
+}
+
 bool Snake::move() {
     Coordinate head = getHeadPosition();
 
@@ -72,16 +78,16 @@ bool Snake::move() {
             new_row -= 1;
             break;
 
-        case 1: // right
-            new_col += 1;
-            break;
-
-        case 2: // down
+        case 1: // down
             new_row += 1;
             break;
 
-        case 3: // left
+        case 2: // left
             new_col -= 1;
+            break;
+
+        case 3: // right
+            new_col += 1;
             break;
     }
 

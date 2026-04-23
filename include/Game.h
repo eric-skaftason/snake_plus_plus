@@ -7,8 +7,8 @@
 
 class Game {
 private:
-    int rows = 10;
-    int cols = 10;
+    int rows = 20;
+    int cols = 20;
     
     Grid grid;
     Food food;
@@ -20,7 +20,7 @@ private:
 
     Renderer renderer = Renderer(rows, cols);
 
-    void update();
+    void update(int direction);
 
 public:
     Game();

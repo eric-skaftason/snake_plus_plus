@@ -74,15 +74,30 @@ void Renderer::render(bool playing, const Snake& snake, const Food& food) {
     this->window->display();
 }
 
-void Renderer::pollEvents() {
+int Renderer::pollEvents() {
+    int result = -1; // default: no input
+
     while (this->window->pollEvent(this->event)) {
         switch (this->event.type) {
             case sf::Event::Closed:
                 this->window->close();
                 break;
+
             case sf::Event::KeyPressed:
-                if (this->event.key.code == sf::Keyboard::Escape) this->window->close();
+                if (this->event.key.code == sf::Keyboard::Escape) {
+                    this->window->close();
+                }
+
+                switch (this->event.key.code) {
+                    case sf::Keyboard::Up: result = 0; break;
+                    case sf::Keyboard::Down: result = 1; break;
+                    case sf::Keyboard::Left: result = 2; break;
+                    case sf::Keyboard::Right: result = 3; break;
+                    default: break;
+                }
                 break;
         }
     }
+
+    return result;
 }

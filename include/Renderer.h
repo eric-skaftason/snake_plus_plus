@@ -16,8 +16,8 @@ private:
 
     sf::VideoMode videoMode;
 
-    int width = 200;
-    int height = 200;
+    int width = 400;
+    int height = 400;
 
     int cell_width, cell_height;
     int rows, cols;
@@ -34,7 +34,7 @@ public:
     ~Renderer();
 
     void render(bool playing, const Snake& snake, const Food& food);
-    void pollEvents();
+    int pollEvents();
 
     const bool getWindowIsOpen() const;
 
