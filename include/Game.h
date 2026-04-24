@@ -7,14 +7,14 @@
 
 class Game {
 private:
-    int rows = 20;
-    int cols = 20;
+    int rows = 50;
+    int cols = 50;
     
     Grid grid;
     Food food;
     Snake snake = Snake(rows, cols);
 
-    int updateDelay = 500; // ms
+    int updateDelay = 100; // ms
 
     bool playing = false;
 

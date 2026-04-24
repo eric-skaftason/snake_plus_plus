@@ -50,7 +50,8 @@ void Snake::removePosition(int index) {
 
 bool Snake::willCollideWithSelf(Coordinate head) {
     // start i at 1 so it skips the head
-    for (int i = 1; i < this->positions.size(); i++) {
+    // stop before last element to skip tail
+    for (int i = 1; i < this->positions.size() - 1; i++) {
         Coordinate position = this->positions[i];
         if (head.row == position.row && head.col == position.col) return true;
     }

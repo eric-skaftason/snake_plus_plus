@@ -31,15 +31,9 @@ void Game::run() {
     this->playing = true;
 
     using Clock = std::chrono::steady_clock;
-    auto previousTime = Clock::now();
+    auto nextTick = Clock::now();
 
     while (this->renderer.getWindowIsOpen()) {
-        auto currentTime = Clock::now();
-
-        std::chrono::milliseconds deltaTime = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - previousTime);
-        previousTime = currentTime;
-        long long ms = deltaTime.count();
-
         // Process events
         int direction = this->renderer.pollEvents();
 
@@ -49,9 +43,9 @@ void Game::run() {
         // Render
         this->renderer.render(this->playing, this->snake, this->food);
 
+
         // Delay
-        if (ms < this->updateDelay) {
-            std::this_thread::sleep_for(std::chrono::milliseconds(this->updateDelay - ms));
-        }
+        nextTick += std::chrono::milliseconds(this->updateDelay);
+        std::this_thread::sleep_until(nextTick);
     }
 }

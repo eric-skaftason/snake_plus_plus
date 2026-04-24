@@ -16,8 +16,8 @@ private:
 
     sf::VideoMode videoMode;
 
-    int width = 400;
-    int height = 400;
+    int width = 500;
+    int height = 500;
 
     int cell_width, cell_height;
     int rows, cols;
