@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Food.h"
-#include "Grid.h"
 #include "Snake.h"
 #include "Renderer.h"
 
@@ -10,8 +9,7 @@ private:
     int rows = 50;
     int cols = 50;
     
-    Grid grid;
-    Food food;
+    Food food = Food(1);
     Snake snake = Snake(rows, cols);
 
     int updateDelay = 100; // ms
@@ -26,4 +24,5 @@ public:
     Game();
 
     void run();
+    void generateFood();
 };

@@ -19,12 +19,16 @@ const std::vector<Coordinate>& Snake::getPositions() const {
     return this->positions;
 }
 
+const Coordinate Snake::getTailPosition() const {
+    return this->positions.back();
+}
+
 void Snake::eraseTail() {
     if (positions.size() == 0) return;
     removePosition(positions.size() - 1);
 }
 
-const Coordinate& Snake::getHeadPosition() const {
+const Coordinate Snake::getHeadPosition() const {
     return this->positions[0];
 }
 
@@ -46,8 +50,6 @@ void Snake::removePosition(int index) {
 }
 
 
-// Public methods
-
 bool Snake::willCollideWithSelf(Coordinate head) {
     // start i at 1 so it skips the head
     // stop before last element to skip tail
@@ -66,6 +68,10 @@ bool Snake::willBeOutOfBounds(Coordinate head) {
 void Snake::setDirection(int direction) {
     if (direction < 0) return;
     this->direction = direction;
+}
+
+void Snake::grow(int row, int col) {
+    this->positions.push_back(Coordinate(row, col));
 }
 
 bool Snake::move() {

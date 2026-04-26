@@ -19,6 +19,11 @@ int Food::getIndexByRowCol(int row, int col) {
     return index;
 }
 
+Food::Food(int maxFood) {
+    this->maxFood = maxFood;
+}
+
+
 const bool Food::isFoodAt(int row, int col) const {
     for (int i = 0; i < this->positions.size(); i++) {
         Coordinate pos = this->positions[i];
@@ -42,4 +47,9 @@ void Food::addFood(int row, int col) {
 
 const std::vector<Coordinate>& Food::getPositions() const {
     return positions;
+}
+
+const bool Food::isFoodShortage() const {
+    if (this->maxFood > this->positions.size()) return true;
+    return false;
 }

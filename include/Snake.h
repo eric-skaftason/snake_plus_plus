@@ -10,8 +10,6 @@ private:
 
     void eraseTail();
 
-    const Coordinate& getHeadPosition() const;
-
     void insertNewHead(Coordinate head);
 
     void removePosition(int index);
@@ -24,12 +22,14 @@ public:
 
     bool move();
 
-    void grow();
+    void grow(int row, int col);
 
     void setDirection(int direction);
 
     // accessor methods
     const std::vector<Coordinate> &getPositions() const;
+    const Coordinate getTailPosition() const;
+    const Coordinate getHeadPosition() const;
     
     const bool isSnakeAt(int row, int col) const;
 

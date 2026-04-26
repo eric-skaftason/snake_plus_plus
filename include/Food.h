@@ -5,11 +5,14 @@
 
 class Food {
 private:
+    int maxFood;
     std::vector<Coordinate> positions;
 
     int getIndexByRowCol(int row, int col);
 
 public:
+
+    Food(int maxFood = 1);
 
     const bool isFoodAt(int row, int col) const;
 
@@ -19,5 +22,7 @@ public:
 
     // const at the end means the method won't mutate the obj
     const std::vector<Coordinate>& getPositions() const;
+
+    const bool isFoodShortage() const;
 
 };
