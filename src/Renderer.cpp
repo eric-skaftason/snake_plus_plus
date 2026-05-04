@@ -6,9 +6,9 @@
 
 // Private methods
 void Renderer::initWindow() {
-    this->window = new sf::RenderWindow(this->videoMode, "Snake++", sf::Style::Default);
+    this->window.create(this->videoMode, "Snake++", sf::Style::Default);
 
-    this->window->setFramerateLimit(30);
+    this->window.setFramerateLimit(30);
 }
 
 void Renderer::renderTile(int row, int col, sf::Color color) {
@@ -16,19 +16,29 @@ void Renderer::renderTile(int row, int col, sf::Color color) {
     const int y = this->cell_height * row;
     sf::RectangleShape tile(sf::Vector2f(this->cell_width, this->cell_height));
 
-    tile.setPosition(x, y);
+    tile.setPosition(sf::Vector2f(x, y));
     tile.setFillColor(color);
 
-    this->window->draw(tile);
+    this->window.draw(tile);
 }
 
-// Constructor / Destructor
-Renderer::Renderer(int rows, int cols) {
-    this->videoMode.width = this->width;
-    this->videoMode.height = this->height;
+// Constructor
 
-    this->cell_width = this->width / cols;
-    this->cell_height = this->height / rows;
+// use C++ initializer list
+/*
+    When an obj is created
+    1. Memory is allocated
+    2. Members are created
+    3. If an initlializer list exists use those values as a param
+    ex. for the member videoMode, use the params: 500, 500
+
+*/
+Renderer::Renderer(int rows, int cols) :
+    videoMode(sf::Vector2u(500, 500)),
+    window(videoMode, "Snake++", sf::Style::Default)
+{
+    this->cell_width = videoMode.size.x / cols;
+    this->cell_height = videoMode.size.y / rows;
 
     this->rows = rows;
     this->cols = cols;
@@ -36,13 +46,10 @@ Renderer::Renderer(int rows, int cols) {
     initWindow();
 }
 
-Renderer::~Renderer() {
-    delete this->window; // deallocate memory
-}
 
 // Accessors
 const bool Renderer::getWindowIsOpen() const {
-    return this->window->isOpen();
+    return this->window.isOpen();
 
     // Equivalent to this:
     // *((*this).window).isOpen();
@@ -52,13 +59,13 @@ const bool Renderer::getWindowIsOpen() const {
 void Renderer::render(bool playing, const Snake& snake, const Food& food) {
     // Check game state
     if (!playing) {
-        this->window->clear(sf::Color(64, 64, 64, 255));
-        this->window->display();
+        this->window.clear(sf::Color(64, 64, 64, 255));
+        this->window.display();
         return;
     }
 
     // Clear old frame
-    this->window->clear(sf::Color(0, 0, 0, 255));
+    this->window.clear(sf::Color(0, 0, 0, 255));
 
     // Render new frame
     for (int r = 0; r < this->rows; r++) {
@@ -71,31 +78,49 @@ void Renderer::render(bool playing, const Snake& snake, const Food& food) {
 
 
     // Display frame
-    this->window->display();
+    this->window.display();
 }
 
 int Renderer::pollEvents() {
     int result = -1; // default: no input
 
-    while (this->window->pollEvent(this->event)) {
-        switch (this->event.type) {
-            case sf::Event::Closed:
-                this->window->close();
-                break;
+    /*
+    SFML 2.x -> 3 port:
+        
+    Old code:
+        sf::Event event;
+        while (window.pollEvent(event)) {}
 
-            case sf::Event::KeyPressed:
-                if (this->event.key.code == sf::Keyboard::Escape) {
-                    this->window->close();
-                }
+    - pollEvent took an sf::Event as an arg and set its value by reference
+    - it then returned a true or false value depending on if there are any events left in the queue
 
-                switch (this->event.key.code) {
-                    case sf::Keyboard::Up: result = 0; break;
-                    case sf::Keyboard::Down: result = 1; break;
-                    case sf::Keyboard::Left: result = 2; break;
-                    case sf::Keyboard::Right: result = 3; break;
-                    default: break;
-                }
-                break;
+    New code:
+    - returns std::optional<sf::Event> meaning it returns a value or std::nullopt
+    - if something returns, event is set, else it is std::nullopt
+    - event is now a std::optional, a wrapper for the actual sf::Event obj
+    - it is not a pointer but the value inside the wrapper can be accessed with the same API as a pointer, e.g. event->key
+    */
+
+    while (std::optional<sf::Event> event = window.pollEvent()) {
+
+        if (event->is<sf::Event::Closed>()) {
+            window.close();
+        }
+
+        // get if event matches
+        if (auto key = event->getIf<sf::Event::KeyPressed>()) {
+
+            if (key->code == sf::Keyboard::Key::Escape) {
+                window.close();
+            }
+
+            switch (key->code) {
+            case sf::Keyboard::Key::Up: result = 0; break;
+            case sf::Keyboard::Key::Down: result = 1; break;
+            case sf::Keyboard::Key::Left: result = 2; break;
+            case sf::Keyboard::Key::Right: result = 3; break;
+            default: break;
+            }
         }
     }
 

@@ -9,15 +9,8 @@ class Snake;
 
 class Renderer {
 private:
-    // set the renderwindow as a pointer to give control over when to delete it
-    // helps for when aking a resizable window
-    sf::RenderWindow* window;
-    sf::Event event;
-
     sf::VideoMode videoMode;
-
-    int width = 500;
-    int height = 500;
+    sf::RenderWindow window;
 
     int cell_width, cell_height;
     int rows, cols;
@@ -31,7 +24,6 @@ private:
 
 public:
     Renderer(int rows, int cols);
-    ~Renderer();
 
     void render(bool playing, const Snake& snake, const Food& food);
     int pollEvents();

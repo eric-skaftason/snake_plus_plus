@@ -37,6 +37,9 @@
 *.out
 *.app
 
+#ide
+.vs
+
 # debug information files
 *.dwo
 
