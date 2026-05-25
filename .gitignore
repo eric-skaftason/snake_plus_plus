@@ -44,4 +44,4 @@
 *.dwo
 
 # binaries
-/bin/
+/bin
